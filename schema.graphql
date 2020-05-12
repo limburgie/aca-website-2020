@@ -257,7 +257,9 @@ type DatoCmsGlobalSeo {
 
 type DatoCmsHomepage implements Node {
     _allIntroLocales: [DatoCmsAllLocalesForDatoCmsHomepageIntro]
+    banner: DatoCmsFileField
     children: [Node!]!
+    gatsbypreview: JSON
     id: ID!
     internal: Internal!
     intro: String
@@ -300,6 +302,7 @@ type DatoCmsLandingPage implements Node {
     bannerBackground: DatoCmsFileField
     children: [Node!]!
     contents: [DatoCmsUnionForDatoCmsLandingPageContents]
+    gatsbypreview: JSON
     id: ID!
     internal: Internal!
     locale: String
@@ -436,6 +439,7 @@ type DatoCmsReference implements Node {
     _allCustomerNameLocales: [DatoCmsAllLocalesForDatoCmsReferenceCustomerName]
     children: [Node!]!
     customerName: String
+    gatsbypreview: JSON
     id: ID!
     internal: Internal!
     locale: String
@@ -967,10 +971,10 @@ type Query {
     datoCmsAsset(author: StringQueryOperatorInput, basename: StringQueryOperatorInput, blurhash: StringQueryOperatorInput, children: NodeFilterListInput, colors: DatoCmsColorFieldFilterListInput, copyright: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, exifInfo: JSONQueryOperatorInput, filename: StringQueryOperatorInput, fixed: DatoCmsFixedFilterInput, fluid: DatoCmsFluidFilterInput, format: StringQueryOperatorInput, height: IntQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, isImage: BooleanQueryOperatorInput, mimeType: StringQueryOperatorInput, notes: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, resolutions: DatoCmsFixedFilterInput, size: IntQueryOperatorInput, sizes: DatoCmsFluidFilterInput, smartTags: StringQueryOperatorInput, tags: StringQueryOperatorInput, url: StringQueryOperatorInput, video: DatoCmsAssetVideoFilterInput, width: IntQueryOperatorInput): DatoCmsAsset
     datoCmsFaviconMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsFaviconMetaTags
     datoCmsField(apiKey: StringQueryOperatorInput, appeareance: JSONQueryOperatorInput, children: NodeFilterListInput, defaultValue: JSONQueryOperatorInput, fieldType: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, label: StringQueryOperatorInput, localized: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, position: IntQueryOperatorInput, validators: JSONQueryOperatorInput): DatoCmsField
-    datoCmsHomepage(_allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, intro: StringQueryOperatorInput, introNode: DatoCmsTextNodeFilterInput, locale: StringQueryOperatorInput, logo: DatoCmsFileFieldFilterInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsHomepage
-    datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, bannerBackground: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
+    datoCmsHomepage(_allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput, banner: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, intro: StringQueryOperatorInput, introNode: DatoCmsTextNodeFilterInput, locale: StringQueryOperatorInput, logo: DatoCmsFileFieldFilterInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsHomepage
+    datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, bannerBackground: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
     datoCmsModel(allLocalesRequired: BooleanQueryOperatorInput, apiKey: StringQueryOperatorInput, children: NodeFilterListInput, collectionAppeareance: StringQueryOperatorInput, draftModeActive: BooleanQueryOperatorInput, fields: DatoCmsFaviconMetaTagsFilterInput, hasSingletonItem: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, modularBlock: BooleanQueryOperatorInput, name: StringQueryOperatorInput, orderingDirection: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, singleton: BooleanQueryOperatorInput, sortable: BooleanQueryOperatorInput, tree: BooleanQueryOperatorInput): DatoCmsModel
-    datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
+    datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
     datoCmsSeoMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsSeoMetaTags
     datoCmsSite(children: NodeFilterListInput, domain: StringQueryOperatorInput, faviconMetaTags: DatoCmsFaviconMetaTagsFilterInput, globalSeo: DatoCmsGlobalSeoFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalDomain: StringQueryOperatorInput, locale: StringQueryOperatorInput, locales: StringQueryOperatorInput, name: StringQueryOperatorInput, noIndex: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput): DatoCmsSite
     datoCmsText(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, text: StringQueryOperatorInput, textNode: DatoCmsTextNodeFilterInput): DatoCmsText
@@ -978,7 +982,7 @@ type Query {
     datoCmsTitleTextImageCta(body: StringQueryOperatorInput, bodyNode: DatoCmsTextNodeFilterInput, children: NodeFilterListInput, ctaButtonLabel: StringQueryOperatorInput, ctaButtonUrl: StringQueryOperatorInput, id: StringQueryOperatorInput, image: DatoCmsFileFieldFilterInput, imagePosition: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, title: StringQueryOperatorInput): DatoCmsTitleTextImageCta
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
     file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
-    site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput): Site
+    site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
     sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
     sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
@@ -1000,9 +1004,8 @@ type Site implements Node {
     id: ID!
     internal: Internal!
     parent: Node
-    pathPrefix: String
-    polyfill: Boolean
     port: Int
+    siteMetadata: SiteSiteMetadata
 }
 
 type SiteBuildMetadata implements Node {
@@ -1184,6 +1187,10 @@ type SitePluginPluginOptions {
     pathCheck: Boolean
     pathToConfigModule: String
     previewMode: Boolean
+}
+
+type SiteSiteMetadata {
+    title: String
 }
 
 enum DatoCmsAssetFieldsEnum {
@@ -1557,6 +1564,73 @@ enum DatoCmsHomepageFieldsEnum {
     _allIntroLocales___valueNode___internal___type
     _allIntroLocales___valueNode___parent___children
     _allIntroLocales___valueNode___parent___id
+    banner___alt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___author
+    banner___basename
+    banner___blurhash
+    banner___colors
+    banner___colors___alpha
+    banner___colors___blue
+    banner___colors___green
+    banner___colors___hex
+    banner___colors___red
+    banner___colors___rgb
+    banner___copyright
+    banner___createdAt
+    banner___customData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___exifInfo
+    banner___filename
+    banner___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___fluid___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___format
+    banner___height
+    banner___isImage
+    banner___mimeType
+    banner___notes
+    banner___originalId
+    banner___path
+    banner___resolutions___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___resolutions___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___size
+    banner___sizes___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___sizes___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___smartTags
+    banner___tags
+    banner___title @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___url
+    banner___video___duration
+    banner___video___frameRate
+    banner___video___mp4Url @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___video___muxPlaybackId
+    banner___video___streamingUrl
+    banner___video___thumbnailUrl @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+    banner___width
     children
     children___children
     children___children___children
@@ -1596,6 +1670,7 @@ enum DatoCmsHomepageFieldsEnum {
     children___parent___internal___type
     children___parent___parent___children
     children___parent___parent___id
+    gatsbypreview
     id
     internal___content
     internal___contentDigest
@@ -1973,6 +2048,7 @@ enum DatoCmsLandingPageFieldsEnum {
     children___parent___internal___type
     children___parent___parent___children
     children___parent___parent___id
+    gatsbypreview
     id
     internal___content
     internal___contentDigest
@@ -2322,6 +2398,7 @@ enum DatoCmsReferenceFieldsEnum {
     children___parent___parent___children
     children___parent___parent___id
     customerName
+    gatsbypreview
     id
     internal___content
     internal___contentDigest
@@ -3866,9 +3943,8 @@ enum SiteFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
-    pathPrefix
-    polyfill
     port
+    siteMetadata___title
 }
 
 enum SitePageFieldsEnum {
@@ -4358,7 +4434,9 @@ input DatoCmsGlobalSeoFilterInput {
 
 input DatoCmsHomepageFilterInput {
     _allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput
+    banner: DatoCmsFileFieldFilterInput
     children: NodeFilterListInput
+    gatsbypreview: JSONQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     intro: StringQueryOperatorInput
@@ -4608,6 +4686,7 @@ input DatoCmsLandingPageFilterInput {
     _allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput
     bannerBackground: DatoCmsFileFieldFilterInput
     children: NodeFilterListInput
+    gatsbypreview: JSONQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     locale: StringQueryOperatorInput
@@ -4665,6 +4744,7 @@ input DatoCmsReferenceFilterInput {
     _allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput
     children: NodeFilterListInput
     customerName: StringQueryOperatorInput
+    gatsbypreview: JSONQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     locale: StringQueryOperatorInput
@@ -4939,9 +5019,8 @@ input SiteFilterInput {
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     parent: NodeFilterInput
-    pathPrefix: StringQueryOperatorInput
-    polyfill: BooleanQueryOperatorInput
     port: IntQueryOperatorInput
+    siteMetadata: SiteSiteMetadataFilterInput
 }
 
 input SitePageFilterInput {
@@ -5032,6 +5111,10 @@ input SitePluginPluginOptionsFilterInput {
 input SitePluginSortInput {
     fields: [SitePluginFieldsEnum]
     order: [SortOrderEnum] = [ASC]
+}
+
+input SiteSiteMetadataFilterInput {
+    title: StringQueryOperatorInput
 }
 
 input SiteSortInput {

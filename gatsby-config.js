@@ -1,4 +1,7 @@
 module.exports = {
+	siteMetadata: {
+		title: `ACA IT-Solutions`
+	},
 	plugins: [
 		{
 			resolve: `gatsby-plugin-typography`,
@@ -21,5 +24,6 @@ module.exports = {
 				disableLiveReload: false,
 			},
 		},
+		`gatsby-plugin-react-helmet`
 	]
 }
