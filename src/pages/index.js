@@ -8,6 +8,7 @@ export default function Home({data}) {
 		<Layout>
 			<Img fixed={data.datoCmsHomepage.logo.fixed}/>
 			<p/>
+			<p/>
 			<div dangerouslySetInnerHTML={{__html: data.datoCmsHomepage.intro}}/>
 		</Layout>
 	);
