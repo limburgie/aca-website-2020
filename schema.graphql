@@ -439,6 +439,8 @@ type DatoCmsReference implements Node {
     _allCustomerNameLocales: [DatoCmsAllLocalesForDatoCmsReferenceCustomerName]
     children: [Node!]!
     customerName: String
+    description: String
+    descriptionNode: DatoCmsTextNode
     gatsbypreview: JSON
     id: ID!
     internal: Internal!
@@ -974,7 +976,7 @@ type Query {
     datoCmsHomepage(_allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput, banner: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, intro: StringQueryOperatorInput, introNode: DatoCmsTextNodeFilterInput, locale: StringQueryOperatorInput, logo: DatoCmsFileFieldFilterInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsHomepage
     datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, bannerBackground: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
     datoCmsModel(allLocalesRequired: BooleanQueryOperatorInput, apiKey: StringQueryOperatorInput, children: NodeFilterListInput, collectionAppeareance: StringQueryOperatorInput, draftModeActive: BooleanQueryOperatorInput, fields: DatoCmsFaviconMetaTagsFilterInput, hasSingletonItem: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, modularBlock: BooleanQueryOperatorInput, name: StringQueryOperatorInput, orderingDirection: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, singleton: BooleanQueryOperatorInput, sortable: BooleanQueryOperatorInput, tree: BooleanQueryOperatorInput): DatoCmsModel
-    datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
+    datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, description: StringQueryOperatorInput, descriptionNode: DatoCmsTextNodeFilterInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
     datoCmsSeoMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsSeoMetaTags
     datoCmsSite(children: NodeFilterListInput, domain: StringQueryOperatorInput, faviconMetaTags: DatoCmsFaviconMetaTagsFilterInput, globalSeo: DatoCmsGlobalSeoFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalDomain: StringQueryOperatorInput, locale: StringQueryOperatorInput, locales: StringQueryOperatorInput, name: StringQueryOperatorInput, noIndex: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput): DatoCmsSite
     datoCmsText(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, text: StringQueryOperatorInput, textNode: DatoCmsTextNodeFilterInput): DatoCmsText
@@ -982,9 +984,9 @@ type Query {
     datoCmsTitleTextImageCta(body: StringQueryOperatorInput, bodyNode: DatoCmsTextNodeFilterInput, children: NodeFilterListInput, ctaButtonLabel: StringQueryOperatorInput, ctaButtonUrl: StringQueryOperatorInput, id: StringQueryOperatorInput, image: DatoCmsFileFieldFilterInput, imagePosition: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, title: StringQueryOperatorInput): DatoCmsTitleTextImageCta
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
     file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
-    site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
+    site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
     siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
-    sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+    sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, context: SitePageContextFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
     sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
 }
 
@@ -1004,6 +1006,8 @@ type Site implements Node {
     id: ID!
     internal: Internal!
     parent: Node
+    pathPrefix: String
+    polyfill: Boolean
     port: Int
     siteMetadata: SiteSiteMetadata
 }
@@ -1078,6 +1082,7 @@ type SitePage implements Node {
     component: String!
     componentChunkName: String!
     componentPath: String
+    context: SitePageContext
     id: ID!
     internal: Internal!
     internalComponentName: String!
@@ -1096,6 +1101,10 @@ type SitePageConnection {
     nodes: [SitePage!]!
     pageInfo: PageInfo!
     totalCount: Int!
+}
+
+type SitePageContext {
+    slug: String
 }
 
 type SitePageEdge {
@@ -2398,6 +2407,45 @@ enum DatoCmsReferenceFieldsEnum {
     children___parent___parent___children
     children___parent___parent___id
     customerName
+    description
+    descriptionNode___children
+    descriptionNode___children___children
+    descriptionNode___children___children___children
+    descriptionNode___children___children___id
+    descriptionNode___children___id
+    descriptionNode___children___internal___content
+    descriptionNode___children___internal___contentDigest
+    descriptionNode___children___internal___description
+    descriptionNode___children___internal___fieldOwners
+    descriptionNode___children___internal___ignoreType
+    descriptionNode___children___internal___mediaType
+    descriptionNode___children___internal___owner
+    descriptionNode___children___internal___type
+    descriptionNode___children___parent___children
+    descriptionNode___children___parent___id
+    descriptionNode___id
+    descriptionNode___internal___content
+    descriptionNode___internal___contentDigest
+    descriptionNode___internal___description
+    descriptionNode___internal___fieldOwners
+    descriptionNode___internal___ignoreType
+    descriptionNode___internal___mediaType
+    descriptionNode___internal___owner
+    descriptionNode___internal___type
+    descriptionNode___parent___children
+    descriptionNode___parent___children___children
+    descriptionNode___parent___children___id
+    descriptionNode___parent___id
+    descriptionNode___parent___internal___content
+    descriptionNode___parent___internal___contentDigest
+    descriptionNode___parent___internal___description
+    descriptionNode___parent___internal___fieldOwners
+    descriptionNode___parent___internal___ignoreType
+    descriptionNode___parent___internal___mediaType
+    descriptionNode___parent___internal___owner
+    descriptionNode___parent___internal___type
+    descriptionNode___parent___parent___children
+    descriptionNode___parent___parent___id
     gatsbypreview
     id
     internal___content
@@ -3943,6 +3991,8 @@ enum SiteFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
+    pathPrefix
+    polyfill
     port
     siteMetadata___title
 }
@@ -3990,6 +4040,7 @@ enum SitePageFieldsEnum {
     component
     componentChunkName
     componentPath
+    context___slug
     id
     internalComponentName
     internal___content
@@ -4744,6 +4795,8 @@ input DatoCmsReferenceFilterInput {
     _allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput
     children: NodeFilterListInput
     customerName: StringQueryOperatorInput
+    description: StringQueryOperatorInput
+    descriptionNode: DatoCmsTextNodeFilterInput
     gatsbypreview: JSONQueryOperatorInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
@@ -5019,8 +5072,14 @@ input SiteFilterInput {
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     parent: NodeFilterInput
+    pathPrefix: StringQueryOperatorInput
+    polyfill: BooleanQueryOperatorInput
     port: IntQueryOperatorInput
     siteMetadata: SiteSiteMetadataFilterInput
+}
+
+input SitePageContextFilterInput {
+    slug: StringQueryOperatorInput
 }
 
 input SitePageFilterInput {
@@ -5028,6 +5087,7 @@ input SitePageFilterInput {
     component: StringQueryOperatorInput
     componentChunkName: StringQueryOperatorInput
     componentPath: StringQueryOperatorInput
+    context: SitePageContextFilterInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput
     internalComponentName: StringQueryOperatorInput

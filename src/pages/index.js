@@ -6,7 +6,6 @@ import Layout from "../components/layout";
 export default function Home({data}) {
 	return (
 		<Layout>
-			<img src={data.datoCmsHomepage.logo.url} width={100} alt={data.datoCmsHomepage.logo.alt}/>
 			<Img fluid={data.datoCmsHomepage.banner.fluid} alt={data.datoCmsHomepage.banner.alt}/>
 			<p/>
 			<div dangerouslySetInnerHTML={{__html: data.datoCmsHomepage.intro}}/>
