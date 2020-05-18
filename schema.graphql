@@ -12,7 +12,7 @@ interface Node {
     parent: Node
 }
 
-union DatoCmsUnionForDatoCmsLandingPageContents = DatoCmsText | DatoCmsTitleTextImageCta
+union DatoCmsUnionForDatoCmsLandingPageContents = DatoCmsCallToAction | DatoCmsQuote | DatoCmsTextBlock
 
 type DatoCmsAllLocalesForDatoCmsHomepageIntro {
     locale: String
@@ -102,6 +102,44 @@ type DatoCmsAssetVideo {
     muxPlaybackId: String
     streamingUrl: String
     thumbnailUrl(format: DatoCmsAssetVideoThumbnailFormat): String
+}
+
+type DatoCmsCallToAction implements Node {
+    buttonLabel: String
+    buttonUrl: String
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    locale: String
+    meta: DatoCmsMetaField
+    model: DatoCmsModel
+    originalId: String
+    parent: Node
+    seoMetaTags: DatoCmsSeoMetaTags
+}
+
+type DatoCmsCallToActionConnection {
+    distinct(field: DatoCmsCallToActionFieldsEnum!): [String!]!
+    edges: [DatoCmsCallToActionEdge!]!
+    group(field: DatoCmsCallToActionFieldsEnum!, limit: Int, skip: Int): [DatoCmsCallToActionGroupConnection!]!
+    nodes: [DatoCmsCallToAction!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type DatoCmsCallToActionEdge {
+    next: DatoCmsCallToAction
+    node: DatoCmsCallToAction!
+    previous: DatoCmsCallToAction
+}
+
+type DatoCmsCallToActionGroupConnection {
+    edges: [DatoCmsCallToActionEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [DatoCmsCallToAction!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
 }
 
 type DatoCmsColorField {
@@ -299,7 +337,6 @@ type DatoCmsHomepageGroupConnection {
 
 type DatoCmsLandingPage implements Node {
     _allTitleLocales: [DatoCmsAllLocalesForDatoCmsLandingPageTitle]
-    bannerBackground: DatoCmsFileField
     children: [Node!]!
     contents: [DatoCmsUnionForDatoCmsLandingPageContents]
     gatsbypreview: JSON
@@ -431,6 +468,45 @@ type DatoCmsModelGroupConnection {
     field: String!
     fieldValue: String
     nodes: [DatoCmsModel!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type DatoCmsQuote implements Node {
+    author: String
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    locale: String
+    meta: DatoCmsMetaField
+    model: DatoCmsModel
+    originalId: String
+    parent: Node
+    quote: String
+    quoteNode: DatoCmsTextNode
+    seoMetaTags: DatoCmsSeoMetaTags
+}
+
+type DatoCmsQuoteConnection {
+    distinct(field: DatoCmsQuoteFieldsEnum!): [String!]!
+    edges: [DatoCmsQuoteEdge!]!
+    group(field: DatoCmsQuoteFieldsEnum!, limit: Int, skip: Int): [DatoCmsQuoteGroupConnection!]!
+    nodes: [DatoCmsQuote!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type DatoCmsQuoteEdge {
+    next: DatoCmsQuote
+    node: DatoCmsQuote!
+    previous: DatoCmsQuote
+}
+
+type DatoCmsQuoteGroupConnection {
+    edges: [DatoCmsQuoteEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [DatoCmsQuote!]!
     pageInfo: PageInfo!
     totalCount: Int!
 }
@@ -571,6 +647,44 @@ type DatoCmsText implements Node {
     seoMetaTags: DatoCmsSeoMetaTags
     text: String
     textNode: DatoCmsTextNode
+}
+
+type DatoCmsTextBlock implements Node {
+    children: [Node!]!
+    id: ID!
+    internal: Internal!
+    locale: String
+    meta: DatoCmsMetaField
+    model: DatoCmsModel
+    originalId: String
+    parent: Node
+    seoMetaTags: DatoCmsSeoMetaTags
+    text: String
+    textNode: DatoCmsTextNode
+}
+
+type DatoCmsTextBlockConnection {
+    distinct(field: DatoCmsTextBlockFieldsEnum!): [String!]!
+    edges: [DatoCmsTextBlockEdge!]!
+    group(field: DatoCmsTextBlockFieldsEnum!, limit: Int, skip: Int): [DatoCmsTextBlockGroupConnection!]!
+    nodes: [DatoCmsTextBlock!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type DatoCmsTextBlockEdge {
+    next: DatoCmsTextBlock
+    node: DatoCmsTextBlock!
+    previous: DatoCmsTextBlock
+}
+
+type DatoCmsTextBlockGroupConnection {
+    edges: [DatoCmsTextBlockEdge!]!
+    field: String!
+    fieldValue: String
+    nodes: [DatoCmsTextBlock!]!
+    pageInfo: PageInfo!
+    totalCount: Int!
 }
 
 type DatoCmsTextConnection {
@@ -953,15 +1067,18 @@ type PageInfo {
 
 type Query {
     allDatoCmsAsset(filter: DatoCmsAssetFilterInput, limit: Int, skip: Int, sort: DatoCmsAssetSortInput): DatoCmsAssetConnection!
+    allDatoCmsCallToAction(filter: DatoCmsCallToActionFilterInput, limit: Int, skip: Int, sort: DatoCmsCallToActionSortInput): DatoCmsCallToActionConnection!
     allDatoCmsFaviconMetaTags(filter: DatoCmsFaviconMetaTagsFilterInput, limit: Int, skip: Int, sort: DatoCmsFaviconMetaTagsSortInput): DatoCmsFaviconMetaTagsConnection!
     allDatoCmsField(filter: DatoCmsFieldFilterInput, limit: Int, skip: Int, sort: DatoCmsFieldSortInput): DatoCmsFieldConnection!
     allDatoCmsHomepage(filter: DatoCmsHomepageFilterInput, limit: Int, skip: Int, sort: DatoCmsHomepageSortInput): DatoCmsHomepageConnection!
     allDatoCmsLandingPage(filter: DatoCmsLandingPageFilterInput, limit: Int, skip: Int, sort: DatoCmsLandingPageSortInput): DatoCmsLandingPageConnection!
     allDatoCmsModel(filter: DatoCmsModelFilterInput, limit: Int, skip: Int, sort: DatoCmsModelSortInput): DatoCmsModelConnection!
+    allDatoCmsQuote(filter: DatoCmsQuoteFilterInput, limit: Int, skip: Int, sort: DatoCmsQuoteSortInput): DatoCmsQuoteConnection!
     allDatoCmsReference(filter: DatoCmsReferenceFilterInput, limit: Int, skip: Int, sort: DatoCmsReferenceSortInput): DatoCmsReferenceConnection!
     allDatoCmsSeoMetaTags(filter: DatoCmsSeoMetaTagsFilterInput, limit: Int, skip: Int, sort: DatoCmsSeoMetaTagsSortInput): DatoCmsSeoMetaTagsConnection!
     allDatoCmsSite(filter: DatoCmsSiteFilterInput, limit: Int, skip: Int, sort: DatoCmsSiteSortInput): DatoCmsSiteConnection!
     allDatoCmsText(filter: DatoCmsTextFilterInput, limit: Int, skip: Int, sort: DatoCmsTextSortInput): DatoCmsTextConnection!
+    allDatoCmsTextBlock(filter: DatoCmsTextBlockFilterInput, limit: Int, skip: Int, sort: DatoCmsTextBlockSortInput): DatoCmsTextBlockConnection!
     allDatoCmsTextNode(filter: DatoCmsTextNodeFilterInput, limit: Int, skip: Int, sort: DatoCmsTextNodeSortInput): DatoCmsTextNodeConnection!
     allDatoCmsTitleTextImageCta(filter: DatoCmsTitleTextImageCtaFilterInput, limit: Int, skip: Int, sort: DatoCmsTitleTextImageCtaSortInput): DatoCmsTitleTextImageCtaConnection!
     allDirectory(filter: DirectoryFilterInput, limit: Int, skip: Int, sort: DirectorySortInput): DirectoryConnection!
@@ -971,15 +1088,18 @@ type Query {
     allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
     allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
     datoCmsAsset(author: StringQueryOperatorInput, basename: StringQueryOperatorInput, blurhash: StringQueryOperatorInput, children: NodeFilterListInput, colors: DatoCmsColorFieldFilterListInput, copyright: StringQueryOperatorInput, createdAt: DateQueryOperatorInput, exifInfo: JSONQueryOperatorInput, filename: StringQueryOperatorInput, fixed: DatoCmsFixedFilterInput, fluid: DatoCmsFluidFilterInput, format: StringQueryOperatorInput, height: IntQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, isImage: BooleanQueryOperatorInput, mimeType: StringQueryOperatorInput, notes: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, resolutions: DatoCmsFixedFilterInput, size: IntQueryOperatorInput, sizes: DatoCmsFluidFilterInput, smartTags: StringQueryOperatorInput, tags: StringQueryOperatorInput, url: StringQueryOperatorInput, video: DatoCmsAssetVideoFilterInput, width: IntQueryOperatorInput): DatoCmsAsset
+    datoCmsCallToAction(buttonLabel: StringQueryOperatorInput, buttonUrl: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsCallToAction
     datoCmsFaviconMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsFaviconMetaTags
     datoCmsField(apiKey: StringQueryOperatorInput, appeareance: JSONQueryOperatorInput, children: NodeFilterListInput, defaultValue: JSONQueryOperatorInput, fieldType: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, label: StringQueryOperatorInput, localized: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, position: IntQueryOperatorInput, validators: JSONQueryOperatorInput): DatoCmsField
     datoCmsHomepage(_allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput, banner: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, intro: StringQueryOperatorInput, introNode: DatoCmsTextNodeFilterInput, locale: StringQueryOperatorInput, logo: DatoCmsFileFieldFilterInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsHomepage
-    datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, bannerBackground: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
+    datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
     datoCmsModel(allLocalesRequired: BooleanQueryOperatorInput, apiKey: StringQueryOperatorInput, children: NodeFilterListInput, collectionAppeareance: StringQueryOperatorInput, draftModeActive: BooleanQueryOperatorInput, fields: DatoCmsFaviconMetaTagsFilterInput, hasSingletonItem: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, modularBlock: BooleanQueryOperatorInput, name: StringQueryOperatorInput, orderingDirection: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, singleton: BooleanQueryOperatorInput, sortable: BooleanQueryOperatorInput, tree: BooleanQueryOperatorInput): DatoCmsModel
+    datoCmsQuote(author: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, quote: StringQueryOperatorInput, quoteNode: DatoCmsTextNodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsQuote
     datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, description: StringQueryOperatorInput, descriptionNode: DatoCmsTextNodeFilterInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
     datoCmsSeoMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsSeoMetaTags
     datoCmsSite(children: NodeFilterListInput, domain: StringQueryOperatorInput, faviconMetaTags: DatoCmsFaviconMetaTagsFilterInput, globalSeo: DatoCmsGlobalSeoFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalDomain: StringQueryOperatorInput, locale: StringQueryOperatorInput, locales: StringQueryOperatorInput, name: StringQueryOperatorInput, noIndex: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput): DatoCmsSite
     datoCmsText(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, text: StringQueryOperatorInput, textNode: DatoCmsTextNodeFilterInput): DatoCmsText
+    datoCmsTextBlock(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, text: StringQueryOperatorInput, textNode: DatoCmsTextNodeFilterInput): DatoCmsTextBlock
     datoCmsTextNode(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): DatoCmsTextNode
     datoCmsTitleTextImageCta(body: StringQueryOperatorInput, bodyNode: DatoCmsTextNodeFilterInput, children: NodeFilterListInput, ctaButtonLabel: StringQueryOperatorInput, ctaButtonUrl: StringQueryOperatorInput, id: StringQueryOperatorInput, image: DatoCmsFileFieldFilterInput, imagePosition: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, title: StringQueryOperatorInput): DatoCmsTitleTextImageCta
     directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
@@ -1365,6 +1485,209 @@ enum DatoCmsAssetVideoThumbnailFormat {
     gif
     jpg
     png
+}
+
+enum DatoCmsCallToActionFieldsEnum {
+    buttonLabel
+    buttonUrl
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    locale
+    meta___createdAt
+    meta___firstPublishedAt
+    meta___isValid
+    meta___publishedAt
+    meta___status
+    meta___updatedAt
+    model___allLocalesRequired
+    model___apiKey
+    model___children
+    model___children___children
+    model___children___children___children
+    model___children___children___id
+    model___children___id
+    model___children___internal___content
+    model___children___internal___contentDigest
+    model___children___internal___description
+    model___children___internal___fieldOwners
+    model___children___internal___ignoreType
+    model___children___internal___mediaType
+    model___children___internal___owner
+    model___children___internal___type
+    model___children___parent___children
+    model___children___parent___id
+    model___collectionAppeareance
+    model___draftModeActive
+    model___fields___children
+    model___fields___children___children
+    model___fields___children___id
+    model___fields___id
+    model___fields___internal___content
+    model___fields___internal___contentDigest
+    model___fields___internal___description
+    model___fields___internal___fieldOwners
+    model___fields___internal___ignoreType
+    model___fields___internal___mediaType
+    model___fields___internal___owner
+    model___fields___internal___type
+    model___fields___parent___children
+    model___fields___parent___id
+    model___fields___tags
+    model___hasSingletonItem
+    model___id
+    model___internal___content
+    model___internal___contentDigest
+    model___internal___description
+    model___internal___fieldOwners
+    model___internal___ignoreType
+    model___internal___mediaType
+    model___internal___owner
+    model___internal___type
+    model___modularBlock
+    model___name
+    model___orderingDirection
+    model___originalId
+    model___parent___children
+    model___parent___children___children
+    model___parent___children___id
+    model___parent___id
+    model___parent___internal___content
+    model___parent___internal___contentDigest
+    model___parent___internal___description
+    model___parent___internal___fieldOwners
+    model___parent___internal___ignoreType
+    model___parent___internal___mediaType
+    model___parent___internal___owner
+    model___parent___internal___type
+    model___parent___parent___children
+    model___parent___parent___id
+    model___singleton
+    model___sortable
+    model___tree
+    originalId
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
+    seoMetaTags___children
+    seoMetaTags___children___children
+    seoMetaTags___children___children___children
+    seoMetaTags___children___children___id
+    seoMetaTags___children___id
+    seoMetaTags___children___internal___content
+    seoMetaTags___children___internal___contentDigest
+    seoMetaTags___children___internal___description
+    seoMetaTags___children___internal___fieldOwners
+    seoMetaTags___children___internal___ignoreType
+    seoMetaTags___children___internal___mediaType
+    seoMetaTags___children___internal___owner
+    seoMetaTags___children___internal___type
+    seoMetaTags___children___parent___children
+    seoMetaTags___children___parent___id
+    seoMetaTags___id
+    seoMetaTags___internal___content
+    seoMetaTags___internal___contentDigest
+    seoMetaTags___internal___description
+    seoMetaTags___internal___fieldOwners
+    seoMetaTags___internal___ignoreType
+    seoMetaTags___internal___mediaType
+    seoMetaTags___internal___owner
+    seoMetaTags___internal___type
+    seoMetaTags___parent___children
+    seoMetaTags___parent___children___children
+    seoMetaTags___parent___children___id
+    seoMetaTags___parent___id
+    seoMetaTags___parent___internal___content
+    seoMetaTags___parent___internal___contentDigest
+    seoMetaTags___parent___internal___description
+    seoMetaTags___parent___internal___fieldOwners
+    seoMetaTags___parent___internal___ignoreType
+    seoMetaTags___parent___internal___mediaType
+    seoMetaTags___parent___internal___owner
+    seoMetaTags___parent___internal___type
+    seoMetaTags___parent___parent___children
+    seoMetaTags___parent___parent___id
+    seoMetaTags___tags
 }
 
 enum DatoCmsFaviconMetaTagsFieldsEnum {
@@ -1951,73 +2274,6 @@ enum DatoCmsLandingPageFieldsEnum {
     _allTitleLocales
     _allTitleLocales___locale
     _allTitleLocales___value
-    bannerBackground___alt @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___author
-    bannerBackground___basename
-    bannerBackground___blurhash
-    bannerBackground___colors
-    bannerBackground___colors___alpha
-    bannerBackground___colors___blue
-    bannerBackground___colors___green
-    bannerBackground___colors___hex
-    bannerBackground___colors___red
-    bannerBackground___colors___rgb
-    bannerBackground___copyright
-    bannerBackground___createdAt
-    bannerBackground___customData @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___exifInfo
-    bannerBackground___filename
-    bannerBackground___fixed___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fixed___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___fluid___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___format
-    bannerBackground___height
-    bannerBackground___isImage
-    bannerBackground___mimeType
-    bannerBackground___notes
-    bannerBackground___originalId
-    bannerBackground___path
-    bannerBackground___resolutions___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___resolutions___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___size
-    bannerBackground___sizes___aspectRatio @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___base64 @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___height @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___sizes @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___src @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___srcSet @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___tracedSVG @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___sizes___width @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___smartTags
-    bannerBackground___tags
-    bannerBackground___title @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___url
-    bannerBackground___video___duration
-    bannerBackground___video___frameRate
-    bannerBackground___video___mp4Url @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___video___muxPlaybackId
-    bannerBackground___video___streamingUrl
-    bannerBackground___video___thumbnailUrl @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
-    bannerBackground___width
     children
     children___children
     children___children___children
@@ -2361,6 +2617,247 @@ enum DatoCmsModelFieldsEnum {
     singleton
     sortable
     tree
+}
+
+enum DatoCmsQuoteFieldsEnum {
+    author
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    locale
+    meta___createdAt
+    meta___firstPublishedAt
+    meta___isValid
+    meta___publishedAt
+    meta___status
+    meta___updatedAt
+    model___allLocalesRequired
+    model___apiKey
+    model___children
+    model___children___children
+    model___children___children___children
+    model___children___children___id
+    model___children___id
+    model___children___internal___content
+    model___children___internal___contentDigest
+    model___children___internal___description
+    model___children___internal___fieldOwners
+    model___children___internal___ignoreType
+    model___children___internal___mediaType
+    model___children___internal___owner
+    model___children___internal___type
+    model___children___parent___children
+    model___children___parent___id
+    model___collectionAppeareance
+    model___draftModeActive
+    model___fields___children
+    model___fields___children___children
+    model___fields___children___id
+    model___fields___id
+    model___fields___internal___content
+    model___fields___internal___contentDigest
+    model___fields___internal___description
+    model___fields___internal___fieldOwners
+    model___fields___internal___ignoreType
+    model___fields___internal___mediaType
+    model___fields___internal___owner
+    model___fields___internal___type
+    model___fields___parent___children
+    model___fields___parent___id
+    model___fields___tags
+    model___hasSingletonItem
+    model___id
+    model___internal___content
+    model___internal___contentDigest
+    model___internal___description
+    model___internal___fieldOwners
+    model___internal___ignoreType
+    model___internal___mediaType
+    model___internal___owner
+    model___internal___type
+    model___modularBlock
+    model___name
+    model___orderingDirection
+    model___originalId
+    model___parent___children
+    model___parent___children___children
+    model___parent___children___id
+    model___parent___id
+    model___parent___internal___content
+    model___parent___internal___contentDigest
+    model___parent___internal___description
+    model___parent___internal___fieldOwners
+    model___parent___internal___ignoreType
+    model___parent___internal___mediaType
+    model___parent___internal___owner
+    model___parent___internal___type
+    model___parent___parent___children
+    model___parent___parent___id
+    model___singleton
+    model___sortable
+    model___tree
+    originalId
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
+    quote
+    quoteNode___children
+    quoteNode___children___children
+    quoteNode___children___children___children
+    quoteNode___children___children___id
+    quoteNode___children___id
+    quoteNode___children___internal___content
+    quoteNode___children___internal___contentDigest
+    quoteNode___children___internal___description
+    quoteNode___children___internal___fieldOwners
+    quoteNode___children___internal___ignoreType
+    quoteNode___children___internal___mediaType
+    quoteNode___children___internal___owner
+    quoteNode___children___internal___type
+    quoteNode___children___parent___children
+    quoteNode___children___parent___id
+    quoteNode___id
+    quoteNode___internal___content
+    quoteNode___internal___contentDigest
+    quoteNode___internal___description
+    quoteNode___internal___fieldOwners
+    quoteNode___internal___ignoreType
+    quoteNode___internal___mediaType
+    quoteNode___internal___owner
+    quoteNode___internal___type
+    quoteNode___parent___children
+    quoteNode___parent___children___children
+    quoteNode___parent___children___id
+    quoteNode___parent___id
+    quoteNode___parent___internal___content
+    quoteNode___parent___internal___contentDigest
+    quoteNode___parent___internal___description
+    quoteNode___parent___internal___fieldOwners
+    quoteNode___parent___internal___ignoreType
+    quoteNode___parent___internal___mediaType
+    quoteNode___parent___internal___owner
+    quoteNode___parent___internal___type
+    quoteNode___parent___parent___children
+    quoteNode___parent___parent___id
+    seoMetaTags___children
+    seoMetaTags___children___children
+    seoMetaTags___children___children___children
+    seoMetaTags___children___children___id
+    seoMetaTags___children___id
+    seoMetaTags___children___internal___content
+    seoMetaTags___children___internal___contentDigest
+    seoMetaTags___children___internal___description
+    seoMetaTags___children___internal___fieldOwners
+    seoMetaTags___children___internal___ignoreType
+    seoMetaTags___children___internal___mediaType
+    seoMetaTags___children___internal___owner
+    seoMetaTags___children___internal___type
+    seoMetaTags___children___parent___children
+    seoMetaTags___children___parent___id
+    seoMetaTags___id
+    seoMetaTags___internal___content
+    seoMetaTags___internal___contentDigest
+    seoMetaTags___internal___description
+    seoMetaTags___internal___fieldOwners
+    seoMetaTags___internal___ignoreType
+    seoMetaTags___internal___mediaType
+    seoMetaTags___internal___owner
+    seoMetaTags___internal___type
+    seoMetaTags___parent___children
+    seoMetaTags___parent___children___children
+    seoMetaTags___parent___children___id
+    seoMetaTags___parent___id
+    seoMetaTags___parent___internal___content
+    seoMetaTags___parent___internal___contentDigest
+    seoMetaTags___parent___internal___description
+    seoMetaTags___parent___internal___fieldOwners
+    seoMetaTags___parent___internal___ignoreType
+    seoMetaTags___parent___internal___mediaType
+    seoMetaTags___parent___internal___owner
+    seoMetaTags___parent___internal___type
+    seoMetaTags___parent___parent___children
+    seoMetaTags___parent___parent___id
+    seoMetaTags___tags
 }
 
 enum DatoCmsReferenceFieldsEnum {
@@ -2930,6 +3427,246 @@ enum DatoCmsSiteFieldsEnum {
     parent___parent___internal___type
     parent___parent___parent___children
     parent___parent___parent___id
+}
+
+enum DatoCmsTextBlockFieldsEnum {
+    children
+    children___children
+    children___children___children
+    children___children___children___children
+    children___children___children___id
+    children___children___id
+    children___children___internal___content
+    children___children___internal___contentDigest
+    children___children___internal___description
+    children___children___internal___fieldOwners
+    children___children___internal___ignoreType
+    children___children___internal___mediaType
+    children___children___internal___owner
+    children___children___internal___type
+    children___children___parent___children
+    children___children___parent___id
+    children___id
+    children___internal___content
+    children___internal___contentDigest
+    children___internal___description
+    children___internal___fieldOwners
+    children___internal___ignoreType
+    children___internal___mediaType
+    children___internal___owner
+    children___internal___type
+    children___parent___children
+    children___parent___children___children
+    children___parent___children___id
+    children___parent___id
+    children___parent___internal___content
+    children___parent___internal___contentDigest
+    children___parent___internal___description
+    children___parent___internal___fieldOwners
+    children___parent___internal___ignoreType
+    children___parent___internal___mediaType
+    children___parent___internal___owner
+    children___parent___internal___type
+    children___parent___parent___children
+    children___parent___parent___id
+    id
+    internal___content
+    internal___contentDigest
+    internal___description
+    internal___fieldOwners
+    internal___ignoreType
+    internal___mediaType
+    internal___owner
+    internal___type
+    locale
+    meta___createdAt
+    meta___firstPublishedAt
+    meta___isValid
+    meta___publishedAt
+    meta___status
+    meta___updatedAt
+    model___allLocalesRequired
+    model___apiKey
+    model___children
+    model___children___children
+    model___children___children___children
+    model___children___children___id
+    model___children___id
+    model___children___internal___content
+    model___children___internal___contentDigest
+    model___children___internal___description
+    model___children___internal___fieldOwners
+    model___children___internal___ignoreType
+    model___children___internal___mediaType
+    model___children___internal___owner
+    model___children___internal___type
+    model___children___parent___children
+    model___children___parent___id
+    model___collectionAppeareance
+    model___draftModeActive
+    model___fields___children
+    model___fields___children___children
+    model___fields___children___id
+    model___fields___id
+    model___fields___internal___content
+    model___fields___internal___contentDigest
+    model___fields___internal___description
+    model___fields___internal___fieldOwners
+    model___fields___internal___ignoreType
+    model___fields___internal___mediaType
+    model___fields___internal___owner
+    model___fields___internal___type
+    model___fields___parent___children
+    model___fields___parent___id
+    model___fields___tags
+    model___hasSingletonItem
+    model___id
+    model___internal___content
+    model___internal___contentDigest
+    model___internal___description
+    model___internal___fieldOwners
+    model___internal___ignoreType
+    model___internal___mediaType
+    model___internal___owner
+    model___internal___type
+    model___modularBlock
+    model___name
+    model___orderingDirection
+    model___originalId
+    model___parent___children
+    model___parent___children___children
+    model___parent___children___id
+    model___parent___id
+    model___parent___internal___content
+    model___parent___internal___contentDigest
+    model___parent___internal___description
+    model___parent___internal___fieldOwners
+    model___parent___internal___ignoreType
+    model___parent___internal___mediaType
+    model___parent___internal___owner
+    model___parent___internal___type
+    model___parent___parent___children
+    model___parent___parent___id
+    model___singleton
+    model___sortable
+    model___tree
+    originalId
+    parent___children
+    parent___children___children
+    parent___children___children___children
+    parent___children___children___id
+    parent___children___id
+    parent___children___internal___content
+    parent___children___internal___contentDigest
+    parent___children___internal___description
+    parent___children___internal___fieldOwners
+    parent___children___internal___ignoreType
+    parent___children___internal___mediaType
+    parent___children___internal___owner
+    parent___children___internal___type
+    parent___children___parent___children
+    parent___children___parent___id
+    parent___id
+    parent___internal___content
+    parent___internal___contentDigest
+    parent___internal___description
+    parent___internal___fieldOwners
+    parent___internal___ignoreType
+    parent___internal___mediaType
+    parent___internal___owner
+    parent___internal___type
+    parent___parent___children
+    parent___parent___children___children
+    parent___parent___children___id
+    parent___parent___id
+    parent___parent___internal___content
+    parent___parent___internal___contentDigest
+    parent___parent___internal___description
+    parent___parent___internal___fieldOwners
+    parent___parent___internal___ignoreType
+    parent___parent___internal___mediaType
+    parent___parent___internal___owner
+    parent___parent___internal___type
+    parent___parent___parent___children
+    parent___parent___parent___id
+    seoMetaTags___children
+    seoMetaTags___children___children
+    seoMetaTags___children___children___children
+    seoMetaTags___children___children___id
+    seoMetaTags___children___id
+    seoMetaTags___children___internal___content
+    seoMetaTags___children___internal___contentDigest
+    seoMetaTags___children___internal___description
+    seoMetaTags___children___internal___fieldOwners
+    seoMetaTags___children___internal___ignoreType
+    seoMetaTags___children___internal___mediaType
+    seoMetaTags___children___internal___owner
+    seoMetaTags___children___internal___type
+    seoMetaTags___children___parent___children
+    seoMetaTags___children___parent___id
+    seoMetaTags___id
+    seoMetaTags___internal___content
+    seoMetaTags___internal___contentDigest
+    seoMetaTags___internal___description
+    seoMetaTags___internal___fieldOwners
+    seoMetaTags___internal___ignoreType
+    seoMetaTags___internal___mediaType
+    seoMetaTags___internal___owner
+    seoMetaTags___internal___type
+    seoMetaTags___parent___children
+    seoMetaTags___parent___children___children
+    seoMetaTags___parent___children___id
+    seoMetaTags___parent___id
+    seoMetaTags___parent___internal___content
+    seoMetaTags___parent___internal___contentDigest
+    seoMetaTags___parent___internal___description
+    seoMetaTags___parent___internal___fieldOwners
+    seoMetaTags___parent___internal___ignoreType
+    seoMetaTags___parent___internal___mediaType
+    seoMetaTags___parent___internal___owner
+    seoMetaTags___parent___internal___type
+    seoMetaTags___parent___parent___children
+    seoMetaTags___parent___parent___id
+    seoMetaTags___tags
+    text
+    textNode___children
+    textNode___children___children
+    textNode___children___children___children
+    textNode___children___children___id
+    textNode___children___id
+    textNode___children___internal___content
+    textNode___children___internal___contentDigest
+    textNode___children___internal___description
+    textNode___children___internal___fieldOwners
+    textNode___children___internal___ignoreType
+    textNode___children___internal___mediaType
+    textNode___children___internal___owner
+    textNode___children___internal___type
+    textNode___children___parent___children
+    textNode___children___parent___id
+    textNode___id
+    textNode___internal___content
+    textNode___internal___contentDigest
+    textNode___internal___description
+    textNode___internal___fieldOwners
+    textNode___internal___ignoreType
+    textNode___internal___mediaType
+    textNode___internal___owner
+    textNode___internal___type
+    textNode___parent___children
+    textNode___parent___children___children
+    textNode___parent___children___id
+    textNode___parent___id
+    textNode___parent___internal___content
+    textNode___parent___internal___contentDigest
+    textNode___parent___internal___description
+    textNode___parent___internal___fieldOwners
+    textNode___parent___internal___ignoreType
+    textNode___parent___internal___mediaType
+    textNode___parent___internal___owner
+    textNode___parent___internal___type
+    textNode___parent___parent___children
+    textNode___parent___parent___id
 }
 
 enum DatoCmsTextFieldsEnum {
@@ -4375,6 +5112,25 @@ input DatoCmsAssetVideoFilterInput {
     thumbnailUrl: StringQueryOperatorInput
 }
 
+input DatoCmsCallToActionFilterInput {
+    buttonLabel: StringQueryOperatorInput
+    buttonUrl: StringQueryOperatorInput
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    locale: StringQueryOperatorInput
+    meta: DatoCmsMetaFieldFilterInput
+    model: DatoCmsModelFilterInput
+    originalId: StringQueryOperatorInput
+    parent: NodeFilterInput
+    seoMetaTags: DatoCmsSeoMetaTagsFilterInput
+}
+
+input DatoCmsCallToActionSortInput {
+    fields: [DatoCmsCallToActionFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
+}
+
 input DatoCmsColorFieldFilterInput {
     alpha: IntQueryOperatorInput
     blue: IntQueryOperatorInput
@@ -4735,7 +5491,6 @@ input DatoCmsImgixParams {
 
 input DatoCmsLandingPageFilterInput {
     _allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput
-    bannerBackground: DatoCmsFileFieldFilterInput
     children: NodeFilterListInput
     gatsbypreview: JSONQueryOperatorInput
     id: StringQueryOperatorInput
@@ -4788,6 +5543,26 @@ input DatoCmsModelFilterInput {
 
 input DatoCmsModelSortInput {
     fields: [DatoCmsModelFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
+}
+
+input DatoCmsQuoteFilterInput {
+    author: StringQueryOperatorInput
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    locale: StringQueryOperatorInput
+    meta: DatoCmsMetaFieldFilterInput
+    model: DatoCmsModelFilterInput
+    originalId: StringQueryOperatorInput
+    parent: NodeFilterInput
+    quote: StringQueryOperatorInput
+    quoteNode: DatoCmsTextNodeFilterInput
+    seoMetaTags: DatoCmsSeoMetaTagsFilterInput
+}
+
+input DatoCmsQuoteSortInput {
+    fields: [DatoCmsQuoteFieldsEnum]
     order: [SortOrderEnum] = [ASC]
 }
 
@@ -4855,6 +5630,25 @@ input DatoCmsSiteFilterInput {
 
 input DatoCmsSiteSortInput {
     fields: [DatoCmsSiteFieldsEnum]
+    order: [SortOrderEnum] = [ASC]
+}
+
+input DatoCmsTextBlockFilterInput {
+    children: NodeFilterListInput
+    id: StringQueryOperatorInput
+    internal: InternalFilterInput
+    locale: StringQueryOperatorInput
+    meta: DatoCmsMetaFieldFilterInput
+    model: DatoCmsModelFilterInput
+    originalId: StringQueryOperatorInput
+    parent: NodeFilterInput
+    seoMetaTags: DatoCmsSeoMetaTagsFilterInput
+    text: StringQueryOperatorInput
+    textNode: DatoCmsTextNodeFilterInput
+}
+
+input DatoCmsTextBlockSortInput {
+    fields: [DatoCmsTextBlockFieldsEnum]
     order: [SortOrderEnum] = [ASC]
 }
 

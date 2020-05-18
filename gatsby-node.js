@@ -1,10 +1,18 @@
 const path = require(`path`)
 
-exports.createPages = async ({ graphql, actions }) => {
-	const { createPage } = actions
-	const result = await graphql(`
+exports.createPages = async ({graphql, actions}) => {
+	const {createPage} = actions
+
+	const query = await graphql(`
     query {
         allDatoCmsReference {
+            edges {
+				node {
+					slug
+				}
+			}
+        }
+        allDatoCmsLandingPage {
             edges {
 				node {
 					slug
@@ -14,7 +22,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-	result.data.allDatoCmsReference.edges.forEach(({node}) => {
+	query.data.allDatoCmsReference.edges.forEach(({node}) => {
 		createPage({
 			path: "/references/" + node.slug,
 			component: path.resolve(`./src/templates/reference.js`),
@@ -22,5 +30,15 @@ exports.createPages = async ({ graphql, actions }) => {
 				slug: node.slug,
 			},
 		})
-	})
+	});
+
+	query.data.allDatoCmsLandingPage.edges.forEach(({node}) => {
+		createPage({
+			path: node.slug,
+			component: path.resolve(`./src/templates/landing-page.js`),
+			context: {
+				slug: node.slug,
+			},
+		})
+	});
 }
