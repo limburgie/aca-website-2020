@@ -474,6 +474,7 @@ type DatoCmsModelGroupConnection {
 
 type DatoCmsQuote implements Node {
     author: String
+    background: DatoCmsColorField
     children: [Node!]!
     id: ID!
     internal: Internal!
@@ -1094,7 +1095,7 @@ type Query {
     datoCmsHomepage(_allIntroLocales: DatoCmsAllLocalesForDatoCmsHomepageIntroFilterListInput, banner: DatoCmsFileFieldFilterInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, intro: StringQueryOperatorInput, introNode: DatoCmsTextNodeFilterInput, locale: StringQueryOperatorInput, logo: DatoCmsFileFieldFilterInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsHomepage
     datoCmsLandingPage(_allTitleLocales: DatoCmsAllLocalesForDatoCmsLandingPageTitleFilterListInput, children: NodeFilterListInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, pod: StringQueryOperatorInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput, subtitle: StringQueryOperatorInput, title: StringQueryOperatorInput): DatoCmsLandingPage
     datoCmsModel(allLocalesRequired: BooleanQueryOperatorInput, apiKey: StringQueryOperatorInput, children: NodeFilterListInput, collectionAppeareance: StringQueryOperatorInput, draftModeActive: BooleanQueryOperatorInput, fields: DatoCmsFaviconMetaTagsFilterInput, hasSingletonItem: BooleanQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, modularBlock: BooleanQueryOperatorInput, name: StringQueryOperatorInput, orderingDirection: StringQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, singleton: BooleanQueryOperatorInput, sortable: BooleanQueryOperatorInput, tree: BooleanQueryOperatorInput): DatoCmsModel
-    datoCmsQuote(author: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, quote: StringQueryOperatorInput, quoteNode: DatoCmsTextNodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsQuote
+    datoCmsQuote(author: StringQueryOperatorInput, background: DatoCmsColorFieldFilterInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, quote: StringQueryOperatorInput, quoteNode: DatoCmsTextNodeFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput): DatoCmsQuote
     datoCmsReference(_allCustomerNameLocales: DatoCmsAllLocalesForDatoCmsReferenceCustomerNameFilterListInput, children: NodeFilterListInput, customerName: StringQueryOperatorInput, description: StringQueryOperatorInput, descriptionNode: DatoCmsTextNodeFilterInput, gatsbypreview: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, locale: StringQueryOperatorInput, meta: DatoCmsMetaFieldFilterInput, model: DatoCmsModelFilterInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput, projectName: StringQueryOperatorInput, projectType: StringQueryOperatorInput, screenshot: DatoCmsFileFieldFilterInput, seoMetaTags: DatoCmsSeoMetaTagsFilterInput, slug: StringQueryOperatorInput): DatoCmsReference
     datoCmsSeoMetaTags(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, tags: JSONQueryOperatorInput): DatoCmsSeoMetaTags
     datoCmsSite(children: NodeFilterListInput, domain: StringQueryOperatorInput, faviconMetaTags: DatoCmsFaviconMetaTagsFilterInput, globalSeo: DatoCmsGlobalSeoFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalDomain: StringQueryOperatorInput, locale: StringQueryOperatorInput, locales: StringQueryOperatorInput, name: StringQueryOperatorInput, noIndex: BooleanQueryOperatorInput, originalId: StringQueryOperatorInput, parent: NodeFilterInput): DatoCmsSite
@@ -2621,6 +2622,12 @@ enum DatoCmsModelFieldsEnum {
 
 enum DatoCmsQuoteFieldsEnum {
     author
+    background___alpha
+    background___blue
+    background___green
+    background___hex
+    background___red
+    background___rgb
     children
     children___children
     children___children___children
@@ -5548,6 +5555,7 @@ input DatoCmsModelSortInput {
 
 input DatoCmsQuoteFilterInput {
     author: StringQueryOperatorInput
+    background: DatoCmsColorFieldFilterInput
     children: NodeFilterListInput
     id: StringQueryOperatorInput
     internal: InternalFilterInput

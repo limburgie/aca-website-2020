@@ -16,7 +16,7 @@ export default function LandingPage({data}) {
 						}
 						{
 							block.model.apiKey === 'quote' &&
-							<div style={{background: block.background, padding: `5px 40px`, marginBottom: `20px`}}>
+							<div style={{background: block.background.hex, padding: `5px 40px`, marginBottom: `20px`}}>
 								<h4>“{block.quote}“</h4>
 								<p>- {block.author}</p>
 							</div>
@@ -54,7 +54,9 @@ export const query = graphql`
 					}
 					quote
 					author
-					background
+					background {
+						hex
+					}
 				}
 				... on DatoCmsCallToAction {
 					id
