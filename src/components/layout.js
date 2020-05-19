@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
 import AcaLogo from "../images/aca-logo.png"
+import favicon from "../images/favicon.ico"
 
 const ListLink = props => (
 	<li style={{ display: `inline-block`, marginRight: `1rem` }}>
@@ -28,6 +29,7 @@ export default function Layout({children}) {
 			<Helmet>
 				<meta charSet="utf-8" />
 				<title>{data.site.siteMetadata.title}</title>
+				<link rel="icon" href={favicon}/>
 			</Helmet>
 			<div style={{ margin: `3rem auto`, maxWidth: 1200, padding: `0 1rem` }}>
 				<header style={{ marginBottom: `1.5rem` }}>
