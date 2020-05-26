@@ -8,7 +8,7 @@ export default function References({data}) {
 			<h2>References</h2>
 			<ul>
 				{data.allDatoCmsReference.edges.map(({node}) => (
-					<li><Link to={"/references/" + node.slug}>{node.customerName}: {node.projectName}</Link></li>
+					<li><Link to={"/references/" + node.slug}>{node.customerName}: {node.projectName}</Link> ({node.projectType})</li>
 				))}
 			</ul>
 		</Layout>
@@ -23,6 +23,7 @@ export const query = graphql`
 					slug
 					customerName
 					projectName
+					projectType
 				}
 			}
         }
