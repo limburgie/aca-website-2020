@@ -5,7 +5,7 @@ import React from "react";
 export default function References({data}) {
 	return (
 		<Layout>
-			<h2>Reference cases</h2>
+			<h2>References</h2>
 			<ul>
 				{data.allDatoCmsReference.edges.map(({node}) => (
 					<li><Link to={"/references/" + node.slug}>{node.customerName}: {node.projectName}</Link> ({node.projectType})</li>
