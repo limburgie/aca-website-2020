@@ -6,7 +6,7 @@ import AcaLogo from "../images/aca-logo.png"
 import favicon from "../images/favicon.ico"
 
 const ListLink = props => (
-	<li style={{ display: `inline-block`, marginRight: `1rem` }}>
+	<li style={{ display: `inline-block`, marginLeft: `1rem` }}>
 		<Link to={props.to}>{props.children}</Link>
 	</li>
 )
@@ -31,7 +31,7 @@ export default function Layout({children}) {
 				<title>{data.site.siteMetadata.title}</title>
 				<link rel="icon" href={favicon}/>
 			</Helmet>
-			<div style={{ margin: `3rem auto`, maxWidth: 1200, padding: `0 1rem` }}>
+			<div style={{ margin: `3rem auto`, maxWidth: 800, padding: `0 1rem` }}>
 				<header style={{ marginBottom: `1.5rem` }}>
 					<Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
 						<img src={AcaLogo} alt="ACA Logo"/>
