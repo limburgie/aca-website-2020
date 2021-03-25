@@ -19,7 +19,7 @@ export default function Reference({data}) {
                         renderBlock={({record}) => {
                             switch (record.__typename) {
                                 case "DatoCmsCallToAction":
-                                    return <button className="primary-button" type="button" onClick={(event => {
+                                    return <button type="button" onClick={(event => {
                                         event.preventDefault();
                                         window.location.href = record.buttonUrl;
                                     })}>{record.buttonLabel}</button>;

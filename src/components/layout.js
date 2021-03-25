@@ -31,7 +31,7 @@ export default function Layout({children}) {
 				<title>{data.site.siteMetadata.title}</title>
 				<link rel="icon" href={favicon}/>
 			</Helmet>
-			<div style={{ margin: `3rem auto`, maxWidth: 800, padding: `0 1rem` }}>
+			<div style={{ margin: `3rem auto`, maxWidth: 1200, padding: `0 1rem` }}>
 				<header style={{ marginBottom: `1.5rem` }}>
 					<Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
 						<img src={AcaLogo} alt="ACA Logo"/>

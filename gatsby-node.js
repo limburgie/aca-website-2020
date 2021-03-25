@@ -19,6 +19,13 @@ exports.createPages = async ({graphql, actions}) => {
 				}
 			}
         }
+        allDatoCmsPodLandingPage {
+            edges {
+				node {
+					slug
+				}
+			}
+        }
     }
   `)
 
@@ -36,6 +43,16 @@ exports.createPages = async ({graphql, actions}) => {
 		createPage({
 			path: node.slug,
 			component: path.resolve(`./src/templates/landing-page.js`),
+			context: {
+				slug: node.slug,
+			},
+		})
+	});
+
+	query.data.allDatoCmsPodLandingPage.edges.forEach(({node}) => {
+		createPage({
+			path: node.slug,
+			component: path.resolve(`./src/templates/pod-landing-page.js`),
 			context: {
 				slug: node.slug,
 			},
